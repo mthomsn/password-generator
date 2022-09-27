@@ -11,6 +11,7 @@ const chosen = {};
 
 // main function to create random password using user selected criteria
 function generatePassword() {
+  alert("You will be prompted with various choices for your password: \nPASSWORD LENGTH: Password can be " + minLength + "to " + maxLength + " characters long. \n\nUPPER CASE LETTERS: Decide if you want uppercase letters in your password. \n\nLOWER CASE LETTERS: Decide if you want lowercase letters in your password. \n\nNUMBERS: Decide if you want numbers in your password. \n\nSPECIAL CHARACTERS: Decide if you want special characters in your password.")
   // user prompted with password criteria
   chosen.length = prompt("How long do you want your password to be? Choose a number between " + minLength + " and " + maxLength);
   // validate user input
@@ -24,13 +25,6 @@ function generatePassword() {
 
   chosen.specialChar = confirm('Adding special characters to password... click "Cancel" to bypass');
 }
-
-
-
-
-// user chooses length > 8 characters and < 128 characters
-
-// user confirms whether or not to use lowercase, uppercase, numeric, and special characters
 
 // user input needs to be validated and at least one character type selected
   // what is answered as true needs to be included
