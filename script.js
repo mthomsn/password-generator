@@ -7,16 +7,26 @@ const numbers = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const specialCharacters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '?'];
 
 // storing user input
-let chosenLength;
+const chosen = {};
 
 // main function to create random password using user selected criteria
 function generatePassword() {
   // user prompted with password criteria
-  chosenLength = prompt("How long do you want your password to be? Choose a number between " + minLength + " and " + maxLength)
+  chosen.length = prompt("How long do you want your password to be? Choose a number between " + minLength + " and " + maxLength);
+  // validate user input
+
+  // user selects which criteria to include
+  chosen.upperCase = confirm('Adding upper case letters to password... click "Cancel" to bypass');
+
+  chosen.lowerCase = confirm('Adding lower case letters to password... click "Cancel" to bypass');
+
+  chosen.numbers = confirm('Adding numbers to password... click "Cancel" to bypass');
+
+  chosen.specialChar = confirm('Adding special characters to password... click "Cancel" to bypass');
 }
 
 
-// user selects which criteria to include
+
 
 // user chooses length > 8 characters and < 128 characters
 
