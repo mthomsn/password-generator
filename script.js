@@ -4,7 +4,7 @@ const maxLength = 128;
 let upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 let lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 let numbers = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9'];
-let specialCharacters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '?'];
+let specialCharacters = ['!', '@', '#', '$', '%', '^', '&', '*', '-', '+', '?'];
 let all = [upperCase, lowerCase, numbers, specialCharacters];
 
 const chosen = {}; // object for storing user input 
@@ -19,17 +19,12 @@ function generatePassword() {
   // user prompted with password criteria
 
   chosen.length = prompt("How long do you want your password to be? Choose a number between " + minLength + " and " + maxLength);
+  // chosen.length = parseInt(chosen.length);
 
-  // if (chosen.length < minLength || chosen.length > maxLength || chosen.length === undefined || typeof chosen.length != 'number' || Number.isInteger(chosen.length)) {
-  //   alert('Please enter a valid number between ' + minLength + ' and ' + maxLength)
-  // }
-
-  while(chosen.length < minLength || chosen.length > maxLength || chosen.length == undefined || typeof chosen.length != 'number') {
+  // need to validate that user input is a number and an integer not a float
+  while(chosen.length < minLength || chosen.length > maxLength || chosen.length == undefined) { 
     chosen.length = prompt("Please choose valid number between " + minLength + " and " + maxLength);
   }
-
-  // validate user input 
-
 
   // user selects which criteria to include
   while (!(chosen.upperCase || chosen.lowerCase || chosen.numbers || chosen.specialChar)) { // validates that at least one type was selected
@@ -69,17 +64,24 @@ function generatePassword() {
   }
 
   // assembling password
-
-
+  for(var i = 0; i < chosen.length - counter; i++) {
+    password.push(working[Math.floor(Math.random() * working.length)]);
+  }
+  console.log(password);
   // randomizing password character order
-
+  shuffleArray(password);
+  console.log(password);
   // remove spaces
+  password = password.join("").trim();
+  console.log(password);
 
   // password is either displayed as alert or written to the page
   
 }
 
-// function to add chosen types to working array?
+function shuffleArray(array) {
+  return array.sort(()=>Math.random()-0.5);
+}
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
