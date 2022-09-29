@@ -1,6 +1,6 @@
 // establishing static variables
-let minLength = 8;
-let maxLength = 128;
+const minLength = 8;
+const maxLength = 128;
 let upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 let lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 let numbers = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -17,13 +17,22 @@ function generatePassword() {
   alert("You will be prompted with various choices for your password: \nPASSWORD LENGTH: Password can be " + minLength + " to " + maxLength + " characters long. \n\nUPPER CASE LETTERS: Decide if you want uppercase letters in your password. \n\nLOWER CASE LETTERS: Decide if you want lowercase letters in your password. \n\nNUMBERS: Decide if you want numbers in your password. \n\nSPECIAL CHARACTERS: Decide if you want special characters in your password.")
 
   // user prompted with password criteria
+
   chosen.length = prompt("How long do you want your password to be? Choose a number between " + minLength + " and " + maxLength);
+
+  // if (chosen.length < minLength || chosen.length > maxLength || chosen.length === undefined || typeof chosen.length != 'number' || Number.isInteger(chosen.length)) {
+  //   alert('Please enter a valid number between ' + minLength + ' and ' + maxLength)
+  // }
+
+  while(chosen.length < minLength || chosen.length > maxLength || chosen.length == undefined || typeof chosen.length != 'number') {
+    chosen.length = prompt("Please choose valid number between " + minLength + " and " + maxLength);
+  }
 
   // validate user input 
 
 
   // user selects which criteria to include
-  while (!(chosen.upperCase || chosen.lowerCase || chosen.numbers || chosen.specialChar)) {
+  while (!(chosen.upperCase || chosen.lowerCase || chosen.numbers || chosen.specialChar)) { // validates that at least one type was selected
   chosen.upperCase = confirm('Adding upper case letters to password... click "Cancel" to bypass');
 
   chosen.lowerCase = confirm('Adding lower case letters to password... click "Cancel" to bypass');
@@ -57,10 +66,6 @@ function generatePassword() {
     working = working.concat(specialCharacters);
     password.push(specialCharacters[Math.floor(Math.random() * specialCharacters.length)]);
     counter++;
-  }
-  // validate that at least one character type was chosen
-  if(!(chosen.upperCase || chosen.lowerCase || chosen.numbers || chosen.specialChar)) {
-    alert("Please select at least one character type.");
   }
 
   // assembling password
