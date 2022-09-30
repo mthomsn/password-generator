@@ -7,13 +7,17 @@ let numbers = ['0','1', '2', '3', '4', '5', '6', '7', '8', '9'];
 let specialCharacters = ['!', '@', '#', '$', '%', '^', '&', '*', '-', '+', '?'];
 let all = [upperCase, lowerCase, numbers, specialCharacters];
 
-const chosen = {}; // object for storing user input 
+let chosen = {}; // object for storing user input 
 let working = []; // pools all symbols into one array to pull from
-let passcode = []; // final array where random passcode will land
+let passcode = []; // final array where random password will land
 let counter = 0; // when static variable is added to working array, i'm pushing one item from each array when adding to working array so this counter will count how many random characters have been added before finalizing random password
 
 // main function to create random passcode using user selected criteria
 function generatePassword() {
+  chosen = {};
+  working = [];
+  passcode = [];
+  counter = 0;
   alert("You will be prompted with various choices for your password: \npasscode LENGTH: passcode can be " + minLength + " to " + maxLength + " characters long. \n\nUPPER CASE LETTERS: Decide if you want uppercase letters in your password. \n\nLOWER CASE LETTERS: Decide if you want lowercase letters in your password. \n\nNUMBERS: Decide if you want numbers in your password. \n\nSPECIAL CHARACTERS: Decide if you want special characters in your password.")
 
   // user prompted with passcode criteria
@@ -24,8 +28,13 @@ function generatePassword() {
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
+
+
   // need to validate that user input is a number and an integer not a float
-  while(chosen.length < minLength || chosen.length > maxLength || chosen.length == undefined) { 
+  while(chosen.length < minLength || chosen.length > maxLength || isNaN(chosen.length) ) { 
+    if(chosen.length == undefined) {
+    return;
+    }
     chosen.length = prompt("Please choose valid number between " + minLength + " and " + maxLength);
   }
 
@@ -78,14 +87,19 @@ function generatePassword() {
   passcode = passcode.join("").trim();
   console.log(passcode);
   return passcode;
-
-  // passcode is either displayed as alert or written to the page
-  
 }
 
 function shuffleArray(array) { 
   return array.sort(()=>Math.random()-0.5);
 }
+
+function selectText() {
+  const input = document.getElementById('password');
+  input.focus();
+  input.select();
+}
+
+
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
