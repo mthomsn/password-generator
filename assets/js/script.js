@@ -18,16 +18,12 @@ function generatePassword() {
   working = [];
   passcode = [];
   counter = 0;
-  alert("You will be prompted with various choices for your password: \npasscode LENGTH: passcode can be " + minLength + " to " + maxLength + " characters long. \n\nUPPER CASE LETTERS: Decide if you want uppercase letters in your password. \n\nLOWER CASE LETTERS: Decide if you want lowercase letters in your password. \n\nNUMBERS: Decide if you want numbers in your password. \n\nSPECIAL CHARACTERS: Decide if you want special characters in your password.")
+  alert("You will be prompted with various choices for your password: \nLENGTH: passcode can be " + minLength + " to " + maxLength + " characters long. \n\nUPPER CASE LETTERS: Decide if you want uppercase letters in your password. \n\nLOWER CASE LETTERS: Decide if you want lowercase letters in your password. \n\nNUMBERS: Decide if you want numbers in your password. \n\nSPECIAL CHARACTERS: Decide if you want special characters in your password.")
 
   // user prompted with passcode criteria
 
   chosen.length = prompt("How long do you want your passcode to be? Choose a number between " + minLength + " and " + maxLength);
   // chosen.length = parseInt(chosen.length);
-
-
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
 
 
   // need to validate that user input is a number and an integer not a float
@@ -74,6 +70,13 @@ function generatePassword() {
     passcode.push(specialCharacters[Math.floor(Math.random() * specialCharacters.length)]);
     counter++;
   }
+
+  // shuffling working array 
+  console.log("working array before shuffle");
+  console.log(working);
+  shuffleArray(working);
+  console.log('working array after shuffle');
+  console.log(working);
 
   // assembling password
   for(var i = 0; i < chosen.length - counter; i++) {
