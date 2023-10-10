@@ -1,4 +1,4 @@
-# challenge-3
+# password-generator
 
 <!-- link github and deployed application -->
 #### __[Deployed Application](https://mthomsn.github.io/challenge-3/)__<br>
